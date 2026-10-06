@@ -1,0 +1,6 @@
+{
+  "id": "close-1",
+  "type": "close",
+  "observedAt": "2026-10-04T00:00:00Z",
+  "facts": { "resolved": true }
+}

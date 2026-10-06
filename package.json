@@ -1,0 +1,46 @@
+{
+  "name": "agent-stage-kit",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Plugin-extensible state graphs for agent stages; host-owned execution and persistence",
+  "exports": {
+    ".": "./dist/index.js",
+    "./json-store": "./dist/json-store.js",
+    "./plugins/*": "./dist/plugins/*.js"
+  },
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "agent-stage-kit": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "examples"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "check": "npm run format:check && npm run typecheck && npm test",
+    "format:check": "prettier --check \"src/**/*.ts\" \"tests/*.mjs\" \"examples/*\" package.json tsconfig.json README.md",
+    "demo:linear": "npm run build && node examples/linear.mjs",
+    "demo:rework": "npm run build && node examples/rework.mjs",
+    "demo:checkpoint": "npm run build && node examples/checkpoint.mjs",
+    "demo": "npm run build && node examples/linear.mjs && node examples/rework.mjs && node examples/quality-gate.mjs && node examples/routing.mjs && node examples/checkpoint.mjs && node examples/migration.mjs",
+    "demo:quality": "npm run build && node examples/quality-gate.mjs",
+    "demo:routing": "npm run build && node examples/routing.mjs",
+    "demo:migration": "npm run build && node examples/migration.mjs",
+    "demo:sales-workflow": "npm run build && node examples/sales-workflow.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "prettier": "^3.9.9",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "xstate": "5.33.2"
+  }
+}
